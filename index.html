@@ -1,131 +1,51 @@
-
-<!DOCTYPE html>
-<html lang="en">
-
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Understanding C# get; private set; - An Interactive Guide</title>
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Steam&#39;s New Adult Content Policy: Payment Processor Influence and Regulatory Pressures</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://fa6.dashgame.com/css/all.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
     <style>
         :root {
-            --primary: #1e293b;
-            --secondary: #475569;
-            --accent: #f59e0b;
-            --muted: #64748b;
-            --background: #fafafa;
-            --surface: #ffffff;
-            --text-primary: #0f172a;
-            --text-secondary: #475569;
-            --border: #e2e8f0;
+            --color-primary: #8B5A3C;
+            --color-secondary: #D4B5A0;
+            --color-accent: #E8D5C4;
+            --color-text: #2D1810;
+            --color-text-light: #5D4037;
+            --color-bg: #FEFCFA;
+            --color-bg-secondary: #F5F1ED;
         }
         
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--background);
-            color: var(--text-primary);
-            overflow-x: hidden;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.7;
         }
         
         .serif {
-            font-family: 'Crimson Text', serif;
+            font-family: 'Playfair Display', serif;
         }
         
-        .hero-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        
-        .code-block {
-            background: #1e293b;
-            color: #e2e8f0;
-            border-radius: 12px;
-            padding: 1.5rem;
-            overflow-x: auto;
-            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-            position: relative;
-        }
-        
-        .code-block::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #f59e0b, #ef4444, #8b5cf6);
-            border-radius: 12px 12px 0 0;
-        }
-        
-        .highlight-comment { color: #94a3b8; }
-        .highlight-keyword { color: #f472b6; }
-        .highlight-string { color: #34d399; }
-        .highlight-number { color: #fbbf24; }
-        .highlight-type { color: #60a5fa; }
-        
-        .interactive-demo {
-            background: var(--surface);
-            border: 2px solid var(--border);
-            border-radius: 16px;
-            padding: 2rem;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-        }
-        
-        .interactive-demo:hover {
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            transform: translateY(-2px);
-        }
-        
-        .demo-button {
-            background: var(--accent);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .demo-button:hover {
-            background: #d97706;
-            transform: translateY(-1px);
-        }
-        
-        .demo-button:active {
-            transform: translateY(0);
-        }
-        
-        .demo-output {
-            background: #f8fafc;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 1rem;
-            margin-top: 1rem;
-            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-            min-height: 60px;
-            white-space: pre-wrap;
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(139, 90, 60, 0.9) 0%, rgba(212, 181, 160, 0.8) 100%);
         }
         
         .toc-fixed {
             position: fixed;
             top: 0;
             left: 0;
-            width: 280px;
             height: 100vh;
-            background: var(--surface);
-            border-right: 1px solid var(--border);
-            padding: 2rem 1.5rem;
+            width: 280px;
+            background: var(--color-bg-secondary);
+            border-right: 1px solid var(--color-secondary);
+            z-index: 1000;
             overflow-y: auto;
-            z-index: 50;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+            padding: 2rem 1.5rem;
+            box-shadow: 2px 0 10px rgba(139, 90, 60, 0.1);
         }
         
         .main-content {
@@ -133,88 +53,76 @@
             min-height: 100vh;
         }
         
-        .toc-link {
-            display: block;
-            padding: 0.5rem 0;
-            color: var(--text-secondary);
+        .citation {
+            display: inline-block;
+            background: var(--color-primary);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.75rem;
             text-decoration: none;
-            border-left: 3px solid transparent;
-            padding-left: 1rem;
+            margin: 0 2px;
+            font-weight: 500;
             transition: all 0.2s ease;
         }
         
-        .toc-link:hover, .toc-link.active {
-            color: var(--accent);
-            border-left-color: var(--accent);
-            background: rgba(245, 158, 11, 0.05);
-        }
-        
-        .hero-section {
-            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+        .citation:hover {
+            background: var(--color-text);
             color: white;
-            position: relative;
-            overflow: hidden;
+            transform: translateY(-1px);
         }
         
-        .vanta-canvas {
+        .pull-quote {
+            border-left: 4px solid var(--color-primary);
+            background: var(--color-bg-secondary);
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            font-style: italic;
+            font-size: 1.1rem;
+            position: relative;
+        }
+        
+        .pull-quote::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--color-secondary);
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
+            top: -1rem;
+            left: 1rem;
+            font-family: 'Playfair Display', serif;
         }
         
-        .hero-content {
-            position: relative;
-            z-index: 10;
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--color-secondary), transparent);
+            margin: 3rem 0;
         }
         
         .bento-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 2rem;
-            align-items: center;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 200px);
+            gap: 1rem;
+            margin: 2rem 0;
         }
         
         .bento-item {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 16px;
-            padding: 2rem;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
         }
         
-        .citation {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 500;
-            border-bottom: 1px dotted var(--accent);
+        .bento-large {
+            grid-column: span 2;
+            grid-row: span 2;
         }
         
-        .citation:hover {
-            border-bottom-style: solid;
+        .bento-wide {
+            grid-column: span 2;
         }
         
-        .concept-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2rem;
-            margin: 2rem 0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-        
-        .step-indicator {
-            display: inline-flex;
-            align-items: center;
-            background: var(--accent);
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
+        .bento-tall {
+            grid-row: span 2;
         }
         
         @media (max-width: 1024px) {
@@ -223,7 +131,7 @@
                 transition: transform 0.3s ease;
             }
             
-            .toc-fixed.mobile-open {
+            .toc-fixed.open {
                 transform: translateX(0);
             }
             
@@ -233,838 +141,1039 @@
             
             .bento-grid {
                 grid-template-columns: 1fr;
+                grid-template-rows: auto;
+            }
+            
+            .bento-large, .bento-wide, .bento-tall {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .mermaid-control-btn:not(.reset-zoom) {
+                display: none;
+            }
+            .mermaid-controls {
+                top: auto;
+                bottom: 15px;
+                right: 15px;
             }
         }
-
-        @media (max-width: 768px) {
-            .hero-content {
-                padding: 2rem 1rem;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-                line-height: 1.2;
-            }
-
-            .hero-content p {
-                font-size: 1.125rem;
-            }
-
-            .bento-item {
-                overflow-wrap: break-word;
-            }
+        
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 280px;
+            right: 0;
+            height: 4px;
+            background: var(--color-accent);
+            z-index: 999;
         }
-
-        @media (max-width: 480px) {
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-
-            .hero-content p {
-                font-size: 1rem;
-            }
+        
+        .scroll-progress {
+            height: 100%;
+            background: var(--color-primary);
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+        
+        .toc-link {
+            display: block;
+            padding: 0.5rem 0;
+            color: var(--color-text-light);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+        
+        .toc-link:hover {
+            color: var(--color-primary);
+            border-bottom-color: var(--color-primary);
+        }
+        
+        .toc-link.active {
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+        
+        .policy-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .policy-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--color-secondary);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1rem;
+            top: 0.5rem;
+            width: 1rem;
+            height: 1rem;
+            background: var(--color-primary);
+            border-radius: 50%;
+            border: 3px solid var(--color-bg);
+        }
+        
+        /* Mermaid diagram styling */
+        .mermaid-container {
+            display: flex;
+            justify-content: center;
+            min-height: 300px;
+            max-height: 800px;
+            background: var(--color-bg);
+            border: 2px solid var(--color-secondary);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(139, 90, 60, 0.12);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mermaid-container .mermaid {
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+            cursor: grab;
+            transition: transform 0.3s ease;
+            transform-origin: center center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            touch-action: none; /* 防止触摸设备上的默认行为 */
+            -webkit-user-select: none; /* 防止文本选择 */
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        .mermaid-container .mermaid svg {
+            max-width: 100%;
+            height: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .mermaid-container .mermaid:active {
+            cursor: grabbing;
+        }
+        
+        .mermaid-container.zoomed .mermaid {
+            height: 100%;
+            width: 100%;
+            cursor: grab;
+        }
+        
+        .mermaid-controls {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+            background: rgba(254, 252, 250, 0.95);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(139, 90, 60, 0.15);
+        }
+        
+        .mermaid-control-btn {
+            background: var(--color-bg);
+            border: 1px solid var(--color-secondary);
+            border-radius: 6px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--color-text);
+            font-size: 14px;
+            min-width: 36px;
+            height: 36px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .mermaid-control-btn:hover {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+            transform: translateY(-1px);
+        }
+        
+        .mermaid-control-btn:active {
+            transform: scale(0.95);
+        }
+        
+        /* Enhanced mermaid theme integration */
+        .mermaid .node rect,
+        .mermaid .node circle,
+        .mermaid .node ellipse,
+        .mermaid .node polygon {
+            fill: var(--color-bg-secondary) !important;
+            stroke: var(--color-primary) !important;
+            stroke-width: 2px !important;
+        }
+        
+        .mermaid .node .label {
+            color: var(--color-text) !important;
+            font-family: 'Inter', sans-serif !important;
+            font-size: 14px !important;
+            font-weight: 500 !important;
+        }
+        
+        .mermaid .edgePath .path {
+            stroke: var(--color-text-light) !important;
+            stroke-width: 2px !important;
+        }
+        
+        .mermaid .edgeLabel {
+            background-color: var(--color-bg) !important;
+            color: var(--color-text) !important;
+            font-family: 'Inter', sans-serif !important;
+            font-size: 12px !important;
+            padding: 4px 8px !important;
+            border-radius: 4px !important;
+            border: 1px solid var(--color-secondary) !important;
+        }
+        
+        /* Different node colors for better contrast */
+        .mermaid .node:nth-child(4n+1) rect,
+        .mermaid .node:nth-child(4n+1) circle,
+        .mermaid .node:nth-child(4n+1) ellipse,
+        .mermaid .node:nth-child(4n+1) polygon {
+            fill: var(--color-bg-secondary) !important;
+            stroke: var(--color-primary) !important;
+        }
+        
+        .mermaid .node:nth-child(4n+2) rect,
+        .mermaid .node:nth-child(4n+2) circle,
+        .mermaid .node:nth-child(4n+2) ellipse,
+        .mermaid .node:nth-child(4n+2) polygon {
+            fill: var(--color-accent) !important;
+            stroke: var(--color-primary) !important;
+        }
+        
+        .mermaid .node:nth-child(4n+3) rect,
+        .mermaid .node:nth-child(4n+3) circle,
+        .mermaid .node:nth-child(4n+3) ellipse,
+        .mermaid .node:nth-child(4n+3) polygon {
+            fill: #F0E6DA !important;
+            stroke: var(--color-primary) !important;
+        }
+        
+        .mermaid .node:nth-child(4n+4) rect,
+        .mermaid .node:nth-child(4n+4) circle,
+        .mermaid .node:nth-child(4n+4) ellipse,
+        .mermaid .node:nth-child(4n+4) polygon {
+            fill: #E6D2C0 !important;
+            stroke: var(--color-primary) !important;
+        }
+        
+        /* Ensure text contrast on all node types */
+        .mermaid .node:nth-child(n) .label {
+            color: var(--color-text) !important;
         }
     </style>
   </head>
 
   <body>
-    <!-- Mobile Menu Toggle -->
-    <button id="mobile-menu-toggle" class="fixed top-4 left-4 z-50 bg-amber-500 text-white p-3 rounded-full shadow-lg lg:hidden">
-      <i class="fas fa-bars"></i>
-    </button>
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-indicator">
+      <div class="scroll-progress" id="scrollProgress"></div>
+    </div>
 
     <!-- Table of Contents -->
-    <nav id="toc" class="toc-fixed">
+    <nav class="toc-fixed" id="toc">
       <div class="mb-8">
-        <h3 class="serif text-lg font-semibold text-gray-900 mb-4">Contents</h3>
-        <div class="space-y-1">
-          <a href="#introduction" class="toc-link">1. Introduction</a>
-          <a href="#core-concepts" class="toc-link">2. Core Concepts</a>
-          <a href="#classes" class="toc-link">2.1 Understanding Classes</a>
-          <a href="#properties" class="toc-link">2.2 Demystifying Properties</a>
-          <a href="#get-private-set" class="toc-link">2.3 The get; private set; Pattern</a>
-          <a href="#methods" class="toc-link">2.4 Methods</a>
-          <a href="#interactive-playbook" class="toc-link">3. Interactive Playbook</a>
-          <a href="#code-walkthrough" class="toc-link">3.1 Code Walkthrough</a>
-          <a href="#simulated-interactivity" class="toc-link">3.2 Simulated Interactivity</a>
-          <a href="#running-code" class="toc-link">3.3 Running the Code</a>
-          <a href="#appendix" class="toc-link">4. Appendix</a>
+        <h3 class="serif text-lg font-semibold text-gray-800 mb-4">Table of Contents</h3>
+      </div>
+      <div class="space-y-1">
+        <a href="#overview" class="toc-link text-sm">1. Overview of Steam&#39;s Policy Change</a>
+        <div class="ml-4 space-y-1">
+          <a href="#introduction" class="toc-link text-xs">1.1 New Rule Introduction</a>
+          <a href="#explicit-mention" class="toc-link text-xs">1.2 Payment Processor Rules</a>
+        </div>
+        <a href="#identification" class="toc-link text-sm">2. Key Influencing Entities</a>
+        <div class="ml-4 space-y-1">
+          <a href="#payment-processors" class="toc-link text-xs">2.1 Payment Processors</a>
+          <a href="#card-networks" class="toc-link text-xs">2.2 Card Networks &amp; Banks</a>
+          <a href="#internet-providers" class="toc-link text-xs">2.3 Internet Network Providers</a>
+        </div>
+        <a href="#agreements" class="toc-link text-sm">3. Specific Agreements</a>
+        <div class="ml-4 space-y-1">
+          <a href="#public-agreements" class="toc-link text-xs">3.1 Lack of Public Agreements</a>
+          <a href="#visa-policies" class="toc-link text-xs">3.2 Visa&#39;s Stance</a>
+          <a href="#mastercard-rules" class="toc-link text-xs">3.3 Mastercard&#39;s Rules</a>
+          <a href="#paypal-policy" class="toc-link text-xs">3.4 PayPal&#39;s AUP</a>
+        </div>
+        <a href="#analysis" class="toc-link text-sm">4. Analysis of Reasons</a>
+        <div class="ml-4 space-y-1">
+          <a href="#dominant-influence" class="toc-link text-xs">4.1 Payment Processor Influence</a>
+          <a href="#definitional-creep" class="toc-link text-xs">4.2 Definitional Creep</a>
+          <a href="#legal-developments" class="toc-link text-xs">4.3 Legal Developments</a>
+          <a href="#external-pressure" class="toc-link text-xs">4.4 External Pressure Groups</a>
+          <a href="#distinction" class="toc-link text-xs">4.5 Legal vs Risk Management</a>
         </div>
       </div>
     </nav>
 
+    <!-- Mobile TOC Toggle -->
+    <button class="lg:hidden fixed top-4 left-4 z-50 bg-white p-2 rounded-lg shadow-lg" onclick="toggleTOC()">
+      <i class="fas fa-bars text-gray-700"></i>
+    </button>
+
     <!-- Main Content -->
     <main class="main-content">
       <!-- Hero Section -->
-      <section class="hero-section min-h-screen flex items-center">
-        <div id="vanta-bg" class="vanta-canvas"></div>
-        <div class="hero-content container mx-auto px-8 py-16">
+      <section class="relative min-h-screen flex items-center">
+        <div class="absolute inset-0 hero-gradient"></div>
+        <img src="https://kimi-web-img.moonshot.cn/img/cdn.pixabay.com/b02005fd451a84fd80b49efe6371c1b94e3fc6c5.jpg" alt="Financial district with skyscrapers" class="absolute inset-0 w-full h-full object-cover opacity-30" size="wallpaper" aspect="wide" style="photo" query="financial district" referrerpolicy="no-referrer" data-modified="1" data-score="11583.00"/>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-8 py-16">
           <div class="bento-grid">
-            <div class="bento-item">
-              <h1 class="serif text-5xl font-bold mb-6 leading-tight">
-                <span class="italic text-amber-300">Understanding</span>
-                <br>
-                C# Properties, Classes & Methods
+            <!-- Main Title -->
+            <div class="bento-item bento-large bg-white/90 backdrop-blur-sm p-8 flex flex-col justify-center">
+              <h1 class="serif text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-4">
+                Steam&#39;s New Adult Content Policy:
+                <span class="italic text-3xl lg:text-4xl text-gray-700">Payment Processor Influence and Regulatory Pressures</span>
               </h1>
-              <p class="text-xl text-gray-200 mb-8 leading-relaxed">
-                A beginner's interactive journey through encapsulation, accessors, and object-oriented programming principles
-              </p>
-              <div class="flex items-center space-x-4 text-sm text-gray-300">
-                <span><i class="fas fa-code mr-2"></i>C# & .NET</span>
-                <span><i class="fas fa-user mr-2"></i>Beginner Level</span>
-                <span><i class="fas fa-clock mr-2"></i>Interactive Guide</span>
-              </div>
+              <p class="text-lg text-gray-600 italic">An analysis of financial institution dominance in digital content moderation</p>
             </div>
 
-            <div class="bento-item">
-              <h3 class="serif text-2xl font-semibold mb-4 text-amber-300">Key Concepts Covered</h3>
-              <ul class="space-y-3 text-gray-200">
-                <li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-3"></i>Class definitions and instantiation</li>
-                <li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-3"></i>
-                  <code>get; private set;</code> accessors
-                </li>
-                <li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-3"></i>Property encapsulation</li>
-                <li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-3"></i>Method implementation</li>
-                <li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-3"></i>Interactive code experimentation</li>
-              </ul>
+            <!-- Key Insight 1 -->
+            <div class="bento-item bg-white/80 backdrop-blur-sm p-6 flex flex-col justify-center">
+              <h3 class="serif text-xl font-semibold text-gray-800 mb-2">Veto Power</h3>
+              <p class="text-sm text-gray-600">Payment processors hold decisive control over what content can be monetized online</p>
             </div>
-          </div>
-        </div>
-      </section>
 
-      <!-- Introduction Section -->
-      <section id="introduction" class="py-16 px-8">
-        <div class="container mx-auto max-w-4xl">
-          <h2 class="serif text-4xl font-bold mb-8 text-center">Introduction</h2>
-
-          <div class="concept-card">
-            <h3 class="serif text-2xl font-semibold mb-4">Purpose of This Guide</h3>
-            <p class="text-lg leading-relaxed mb-4">
-              This guide provides a <strong>foundational understanding of core C# programming concepts</strong>, specifically focusing on
-              <code>get; private set;</code> accessors, classes, and methods. It's designed to help beginners, particularly those in their initial weeks of learning C# and .NET, to <strong>visualize and comprehend how these elements work together</strong> to build program logic.
-            </p>
-            <p class="text-lg leading-relaxed">
-              The guide uses a practical example, the
-              <code>Player</code> class, to illustrate these concepts in a tangible way. Furthermore, it introduces the idea of an <strong>"interactive playbook,"</strong> a method for experimenting with code by simulating the activation or deactivation of functions and observing their effects.
-            </p>
-          </div>
-
-          <div class="concept-card">
-            <h3 class="serif text-2xl font-semibold mb-4">Target Audience</h3>
-            <p class="text-lg leading-relaxed mb-4">
-              This guide is specifically tailored for individuals with <strong>very little to no prior experience in C# or .NET development</strong>. The explanations and examples are structured with this <strong>beginner level in mind</strong>, aiming to be clear, concise, and free of overly complex jargon.
-            </p>
-            <div class="bg-amber-50 border-l-4 border-amber-400 p-4 rounded">
-              <p class="text-amber-800">
-                <i class="fas fa-lightbulb mr-2"></i>
-                <strong>Prerequisites:</strong> Basic familiarity with programming concepts like variables and data types. No deep knowledge of object-oriented principles or specific C# syntax is required.
-              </p>
+            <!-- Key Insight 2 -->
+            <div class="bento-item bg-white/80 backdrop-blur-sm p-6 flex flex-col justify-center">
+              <h3 class="serif text-xl font-semibold text-gray-800 mb-2">Financial Risk</h3>
+              <p class="text-sm text-gray-600">High chargeback rates and fraud concerns drive restrictive policies</p>
             </div>
-          </div>
 
-          <div class="concept-card">
-            <h3 class="serif text-2xl font-semibold mb-4">How to Use This Guide</h3>
-            <p class="text-lg leading-relaxed mb-4">
-              This guide is structured to first explain the core C# concepts theoretically and then to apply them practically using the
-              <code>Player</code> class example. Readers are encouraged to <strong>read through the conceptual explanations before moving to the interactive playbook sections</strong>.
-            </p>
-            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
-              <h4 class="font-semibold text-blue-900 mb-2">Interactive Learning Approach</h4>
-              <p class="text-blue-800">
-                The interactive playbook simulates the experience of toggling code on and off. While direct C# code execution within this document isn't possible, the playbook describes scenarios and provides code snippets that you can run in your local development environment (e.g., Visual Studio 2022 Community).
-              </p>
+            <!-- Key Insight 3 -->
+            <div class="bento-item bento-wide bg-white/80 backdrop-blur-sm p-6 flex flex-col justify-center">
+              <h3 class="serif text-xl font-semibold text-gray-800 mb-2">Brand Protection</h3>
+              <p class="text-sm text-gray-600">Payment processors prioritize brand reputation over content diversity</p>
+            </div>
+
+            <!-- Key Insight 4 -->
+            <div class="bento-item bento-tall bg-white/80 backdrop-blur-sm p-6 flex flex-col justify-center">
+              <h3 class="serif text-xl font-semibold text-gray-800 mb-2">Historical Precedent</h3>
+              <p class="text-sm text-gray-600">Platforms like Pornhub and OnlyFans faced similar pressure from payment processors</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Core Concepts Section -->
-      <section id="core-concepts" class="py-16 px-8 bg-gray-50">
-        <div class="container mx-auto max-w-4xl">
-          <h2 class="serif text-4xl font-bold mb-12 text-center">Core C# Concepts Explained</h2>
+      <!-- Content Sections -->
+      <div class="max-w-4xl mx-auto px-8 py-16">
 
-          <!-- Understanding Classes -->
-          <div id="classes" class="concept-card mb-12">
-            <h3 class="serif text-2xl font-semibold mb-6">Understanding Classes</h3>
-            <p class="text-lg leading-relaxed mb-6">
-              In C#, a <strong>class is a fundamental building block of object-oriented programming (OOP)</strong> that serves as a blueprint for creating objects. Objects are instances of a class, and they <strong>encapsulate data (attributes or properties) and behavior (methods or functions)</strong> that operate on that data.
+        <!-- Section 1: Overview -->
+        <section id="overview" class="mb-16">
+          <h2 class="serif text-3xl font-bold text-gray-900 mb-8">1. Overview of Steam&#39;s Policy Change</h2>
+
+          <div id="introduction" class="mb-12">
+            <h3 class="serif text-2xl font-semibold text-gray-800 mb-6">1.1 Introduction of New Rule Targeting &#34;Certain Kinds of Adult Only Content&#34;</h3>
+
+            <p class="text-lg mb-6">Valve Corporation, the operator of the <strong>Steam digital distribution platform</strong>, recently updated its Steamworks onboarding documentation for game developers, introducing a significant new rule that explicitly addresses <strong>&#34;certain kinds of adult only content&#34;</strong>
+              <a href="https://www.gosugamers.net/entertainment/news/76174-valve-updates-steam-policy-with-vague-adult-content-restrictions" class="citation">248</a>
+              <a href="https://automaton-media.com/en/news/steam-rules-updated-to-prohibit-content-that-violates-rules-set-forth-by-payment-processors-and-banks/" class="citation">250</a>.
             </p>
 
-            <div class="code-block mb-6">
-              <pre><code><span class="highlight-keyword">public class</span> <span class="highlight-type">Player</span>
-{
-    <span class="highlight-comment">// Properties (data)</span>
-    <span class="highlight-keyword">public</span> <span class="highlight-type">string</span> Name { <span class="highlight-keyword">get</span>; <span class="highlight-keyword">private set</span>; }
-    <span class="highlight-keyword">public</span> <span class="highlight-type">int</span> Health { <span class="highlight-keyword">get</span>; <span class="highlight-keyword">private set</span>; }
-
-    <span class="highlight-comment">// Constructor (initialization)</span>
-    <span class="highlight-keyword">public</span> Player(<span class="highlight-type">string</span> name)
-    {
-        Name = name;
-        Health = <span class="highlight-number">100</span>;
-    }
-}</code></pre>
+            <div class="pull-quote">
+              This change, identified around mid-July 2025, adds a 15th clause to the &#34;What you shouldn&#39;t publish on Steam&#34; section, marking a pivotal shift from Steam&#39;s previously more permissive stance.
             </div>
 
-            <p class="text-lg leading-relaxed">
-              The
-              <code>Player</code> class defines what a "Player" is in the context of a game project. It specifies that every
-              <code>Player</code> object will have a
-              <code>Name</code> (a string) and
-              <code>Health</code> (an integer). The constructor demonstrates how classes can define the initial state of their objects.
-            </p>
-          </div>
-
-          <!-- Demystifying Properties -->
-          <div id="properties" class="concept-card mb-12">
-            <h3 class="serif text-2xl font-semibold mb-6">Demystifying Properties: get and set</h3>
-            <p class="text-lg leading-relaxed mb-6">
-              <strong>Properties in C# are members of a class that provide a flexible mechanism to read, write, or compute the value of a private field.</strong> They offer a level of abstraction over direct field access, allowing for validation, computation, or other logic to be executed when a value is retrieved or assigned.
+            <p class="mb-6">The rule prohibits &#34;Content that may violate the rules and standards set forth by Steam&#39;s payment processors and related card networks and banks, or internet network providers. In particular, certain kinds of adult only content&#34; <a href="https://www.gosugamers.net/entertainment/news/76174-valve-updates-steam-policy-with-vague-adult-content-restrictions" class="citation">248</a>
+              <a href="https://automaton-media.com/en/news/steam-rules-updated-to-prohibit-content-that-violates-rules-set-forth-by-payment-processors-and-banks/" class="citation">250</a>.
             </p>
 
-            <div class="grid md:grid-cols-2 gap-6 mb-6">
-              <div class="bg-white border border-gray-200 rounded-lg p-6">
-                <h4 class="font-semibold text-lg mb-3 text-green-700">
-                  <i class="fas fa-download mr-2"></i>get Accessor
-                </h4>
-                <p class="text-gray-700">
-                  The
-                  <code>get</code> accessor is used to <strong>return the property value</strong>. It allows external code to read the property's current value.
-                </p>
-                <div class="mt-4 p-3 bg-green-50 rounded">
-                  <code class="text-sm">Console.WriteLine(player.Name);</code>
-                  <p class="text-sm text-green-600 mt-1">// Reads the Name property</p>
+            <p class="mb-6">This marks a <strong>pivotal shift</strong> from Steam&#39;s previously more permissive stance, which, since 2018, generally allowed mature games provided they were legally compliant and appropriately labeled and age-gated <a href="https://www.dexerto.com/gaming/steam-quietly-begins-removing-adult-games-over-new-rule-3227358/" class="citation">249</a>
+              <a href="https://automaton-media.com/en/news/steam-rules-updated-to-prohibit-content-that-violates-rules-set-forth-by-payment-processors-and-banks/" class="citation">495</a>.
+            </p>
+
+            <div class="bg-amber-50 border-l-4 border-amber-400 p-6 my-8">
+              <h4 class="font-semibold text-amber-800 mb-2">Policy Timeline</h4>
+              <div class="policy-timeline">
+                <div class="timeline-item">
+                  <h5 class="font-medium text-gray-800">2018</h5>
+                  <p class="text-gray-600">Steam adopts permissive stance allowing mature games with proper labeling</p>
                 </div>
-              </div>
-
-              <div class="bg-white border border-gray-200 rounded-lg p-6">
-                <h4 class="font-semibold text-lg mb-3 text-blue-700">
-                  <i class="fas fa-upload mr-2"></i>set Accessor
-                </h4>
-                <p class="text-gray-700">
-                  The
-                  <code>set</code> accessor is used to <strong>assign a new value</strong>. It allows external code to modify the property's value.
-                </p>
-                <div class="mt-4 p-3 bg-blue-50 rounded">
-                  <code class="text-sm">player.Name = "NewName";</code>
-                  <p class="text-sm text-blue-600 mt-1">// Sets the Name property</p>
+                <div class="timeline-item">
+                  <h5 class="font-medium text-gray-800">Mid-July 2025</h5>
+                  <p class="text-gray-600">New rule introduced targeting &#34;certain kinds of adult only content&#34;</p>
+                </div>
+                <div class="timeline-item">
+                  <h5 class="font-medium text-gray-800">Immediate Enforcement</h5>
+                  <p class="text-gray-600">Multiple adult-themed games reportedly removed from Steam store</p>
                 </div>
               </div>
             </div>
 
-            <p class="text-lg leading-relaxed">
-              In the
-              <code>Player</code> class example,
-              <code>public string Name { get; private set; }</code> and
-              <code>public int Health { get; private set; }</code> are auto-implemented properties. This means the compiler automatically creates a private, anonymous backing field that can only be accessed through the property's
-              <code>get</code> and
-              <code>set</code> accessors.
+            <p class="mb-6">The <strong>vagueness of &#34;certain kinds of adult only content&#34;</strong> has caused considerable uncertainty and concern among developers, as Valve has not provided specific examples or further clarification on what material might fall under this category <a href="https://www.gosugamers.net/entertainment/news/76174-valve-updates-steam-policy-with-vague-adult-content-restrictions" class="citation">248</a>
+              <a href="https://www.dexerto.com/gaming/steam-quietly-begins-removing-adult-games-over-new-rule-3227358/" class="citation">249</a>.
             </p>
           </div>
 
-          <!-- get; private set; Pattern -->
-          <div id="get-private-set" class="concept-card mb-12">
-            <h3 class="serif text-2xl font-semibold mb-6">The get; private set; Pattern</h3>
-            <p class="text-lg leading-relaxed mb-6">
-              The <strong>get; private set; pattern is a common and powerful C# idiom used to create read-only properties from outside the class</strong>, while still allowing the class itself to modify the property's value.
+          <div id="explicit-mention" class="mb-12">
+            <h3 class="serif text-2xl font-semibold text-gray-800 mb-6">1.2 Explicit Mention of Payment Processor, Card Network, Bank, and Internet Network Provider Rules</h3>
+
+            <p class="mb-6">The newly introduced clause in Steam&#39;s onboarding documentation is remarkable for its <strong>explicit deference to the &#34;rules and standards&#34; of several categories of external entities</strong>: &#34;Steam&#39;s payment processors and related card networks and banks, or internet network providers&#34; <a href="https://www.gosugamers.net/entertainment/news/76174-valve-updates-steam-policy-with-vague-adult-content-restrictions" class="citation">248</a>
+              <a href="https://automaton-media.com/en/news/steam-rules-updated-to-prohibit-content-that-violates-rules-set-forth-by-payment-processors-and-banks/" class="citation">250</a>.
             </p>
 
-            <div class="bg-amber-50 border-l-4 border-amber-400 p-6 rounded mb-6">
-              <h4 class="font-semibold text-amber-900 mb-3">Key Benefits:</h4>
-              <ul class="space-y-2 text-amber-800">
-                <li class="flex items-start">
-                  <i class="fas fa-shield-alt mr-3 mt-1 text-amber-600"></i>
-                  <span><strong>Encapsulation:</strong> Protects internal state from arbitrary external modification</span>
-                </li>
-                <li class="flex items-start">
-                  <i class="fas fa-cog mr-3 mt-1 text-amber-600"></i>
-                  <span><strong>Controlled Access:</strong> Ensures data integrity through class methods</span>
-                </li>
-                <li class="flex items-start">
-                  <i class="fas fa-eye mr-3 mt-1 text-amber-600"></i>
-                  <span><strong>Read-Only Exposure:</strong> Allows reading while restricting writing</span>
-                </li>
-              </ul>
-            </div>
+            <img src="https://kimi-web-img.moonshot.cn/img/www.innopay.com/8b89dabc228e07d21bad456f20dd319ff1dd722e.jpg" alt="Interconnected digital payment network" class="w-full h-64 object-cover rounded-lg mb-6 shadow-lg" size="medium" aspect="wide" query="digital payment network" referrerpolicy="no-referrer" data-modified="1" data-score="11485.00"/>
 
-            <p class="text-lg leading-relaxed mb-4">
-              When a property has a
-              <code>public get</code> accessor, any other code in the application can read the current value of that property. The <strong>private set</strong> accessor means that only the code <em>within</em> the class can assign a new value to this property.
-            </p>
+            <p class="mb-6">By naming these entities, Valve is transparently acknowledging that its content policies are now, at least in part, <strong>shaped by the contractual obligations and risk management strategies of these third parties</strong>.</p>
 
-            <p class="text-lg leading-relaxed">
-              This is particularly useful for ensuring data integrity and enforcing business rules. For example, the
-              <code>Health</code> property might have specific rules: it shouldn't be negative, or it shouldn't exceed a maximum value. By making the
-              <code>set</code> accessor private, the
-              <code>Player</code> class can implement methods like
-              <code>TakeDamage(int amount)</code> that internally modify the
-              <code>Health</code> property, applying any necessary logic before assigning it.
+            <p class="mb-6">The inclusion of &#34;payment processors&#34; directly implicates companies like <strong>Visa, MasterCard, and PayPal</strong>, which are known to have stringent policies regarding adult content and other high-risk merchant categories <a href="https://www.engadget.com/gaming/steam-now-bans-games-that-violate-the-rules-and-standards-of-payment-processors-and-banks-164222173.html" class="citation">258</a>
+              <a href="https://www.gamingonlinux.com/2025/07/valve-gets-pressured-by-payment-processors-with-a-new-rule-for-game-devs-and-various-adult-games-removed/" class="citation">262</a>.
             </p>
           </div>
+        </section>
 
-          <!-- Methods -->
-          <div id="methods" class="concept-card">
-            <h3 class="serif text-2xl font-semibold mb-6">Methods: Adding Behavior to Classes</h3>
-            <p class="text-lg leading-relaxed mb-6">
-              <strong>Methods are blocks of code within a class that define the actions or operations an object of that class can perform.</strong> They encapsulate behavior, allowing objects to do things, interact with their own data, or interact with other objects.
-            </p>
+        <div class="section-divider"></div>
 
-            <div class="code-block mb-6">
-              <pre><code><span class="highlight-keyword">public class</span> <span class="highlight-type">Player</span>
-{
-    <span class="highlight-comment">// ... properties ...</span>
-    
-    <span class="highlight-comment">// Method to modify Health with validation</span>
-    <span class="highlight-keyword">public void</span> TakeDamage(<span class="highlight-type">int</span> amount)
-    {
-        <span class="highlight-keyword">if</span> (amount > <span class="highlight-number">0</span>) <span class="highlight-comment">// Ensure damage is positive</span>
-        {
-            Health -= amount;
-            <span class="highlight-keyword">if</span> (Health < <span class="highlight-number">0</span>) Health = <span class="highlight-number">0</span>; <span class="highlight-comment">// Health shouldn't be negative</span>
-        }
-    }
-}</code></pre>
-            </div>
+        <!-- Section 2: Identification -->
+        <section id="identification" class="mb-16">
+          <h2 class="serif text-3xl font-bold text-gray-900 mb-8">2. Identification of Key Influencing Entities</h2>
 
-            <p class="text-lg leading-relaxed mb-4">
-              In the
-              <code>Player</code> class, the constructor
-              <code>public Player(string name)</code> is a special type of method that initializes a new
-              <code>Player</code> object. To change the
-              <code>Health</code> of a
-              <code>Player</code> (which has a
-              <code>private set</code>), you would typically have a method within the
-              <code>Player</code> class, such as
-              <code>TakeDamage</code>.
-            </p>
+          <div id="payment-processors" class="mb-12">
+            <h3 class="serif text-2xl font-semibold text-gray-800 mb-6">2.1 Steam&#39;s Listed Payment Processors</h3>
 
-            <p class="text-lg leading-relaxed">
-              This method would contain the logic for reducing the player's health, potentially checking if the health drops below zero, and triggering other game events. The Python example
-              <code>take_damage(self, amount)</code> clearly demonstrates a method that modifies the internal state of an object, showcasing how <strong>methods provide controlled ways to change object data, especially when properties have restricted setters.</strong>
-            </p>
-          </div>
-        </div>
-      </section>
+            <p class="mb-6">Steam&#39;s platform relies on a variety of payment processors to facilitate transactions for its global user base. These include:</p>
 
-      <!-- Interactive Playbook Section -->
-      <section id="interactive-playbook" class="py-16 px-8">
-        <div class="container mx-auto max-w-4xl">
-          <h2 class="serif text-4xl font-bold mb-12 text-center">Interactive Playbook: The Player Class in Action</h2>
-
-          <!-- Code Walkthrough -->
-          <div id="code-walkthrough" class="concept-card mb-12">
-            <h3 class="serif text-2xl font-semibold mb-6">The Player Class: Code Walkthrough</h3>
-            <p class="text-lg leading-relaxed mb-6">
-              The
-              <code>Player</code> class serves as the central example for this interactive playbook. Let's break down its components to understand its structure and behavior:
-            </p>
-
-            <div class="code-block mb-8">
-              <pre><code><span class="highlight-keyword">public class</span> <span class="highlight-type">Player</span>
-{
-    <span class="highlight-comment">// Properties with get; private set;</span>
-    <span class="highlight-keyword">public</span> <span class="highlight-type">string</span> Name { <span class="highlight-keyword">get</span>; <span class="highlight-keyword">private set</span>; }  <span class="highlight-comment">// Get makes it so any one code outside can read the player's name.</span>
-    <span class="highlight-keyword">public</span> <span class="highlight-type">int</span> Health { <span class="highlight-keyword">get</span>; <span class="highlight-keyword">private set</span>; }   <span class="highlight-comment">// private set makes so Health can only be changed by code inside the Player class itself.</span>
-
-    <span class="highlight-comment">// Constructor</span>
-    <span class="highlight-keyword">public</span> Player(<span class="highlight-type">string</span> name)
-    {
-        Name = name;
-        Health = <span class="highlight-number">100</span>;
-    }
-
-    <span class="highlight-comment">// Method to modify Health</span>
-    <span class="highlight-keyword">public void</span> TakeDamage(<span class="highlight-type">int</span> amount)
-    {
-        <span class="highlight-keyword">if</span> (amount > <span class="highlight-number">0</span>) <span class="highlight-comment">// Ensure damage is positive</span>
-        {
-            Health -= amount;
-            <span class="highlight-keyword">if</span> (Health < <span class="highlight-number">0</span>) Health = <span class="highlight-number">0</span>; <span class="highlight-comment">// Health shouldn't be negative</span>
-        }
-    }
-
-    <span class="highlight-comment">// Method to display player info</span>
-    <span class="highlight-keyword">public void</span> DisplayInfo()
-    {
-        Console.WriteLine($<span class="highlight-string">"Name: {Name}"</span>);
-        Console.WriteLine($<span class="highlight-string">"Health: {Health}"</span>);
-    }
-}</code></pre>
-            </div>
-
-            <div class="grid gap-6">
-              <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                <h4 class="font-semibold text-blue-900 mb-3">
-                  <i class="fas fa-code mr-2"></i>Class Declaration
-                </h4>
-                <p class="text-blue-800">
-                  <code>public class Player</code> defines a new class named
-                  <code>Player</code>. The
-                  <code>public</code> access modifier means this class can be accessed from other parts of the program.
-                </p>
-              </div>
-
-              <div class="bg-green-50 border border-green-200 rounded-lg p-6">
-                <h4 class="font-semibold text-green-900 mb-3">
-                  <i class="fas fa-key mr-2"></i>Properties
-                </h4>
-                <p class="text-green-800 mb-4">
-                  Properties define the data attributes of the class with controlled access:
-                </p>
-                <ul class="space-y-2 text-green-700">
-                  <li><strong>public get:</strong> External code can read the value</li>
-                  <li><strong>private set:</strong> Only code within the class can modify the value</li>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              <div class="bg-white border border-gray-200 rounded-lg p-4">
+                <h4 class="font-semibold text-gray-800 mb-2">Major Card Networks</h4>
+                <ul class="text-gray-600 space-y-1">
+                  <li>• Visa</li>
+                  <li>• MasterCard</li>
+                  <li>• JCB (Japan Credit Bureau)</li>
                 </ul>
               </div>
-
-              <div class="bg-purple-50 border border-purple-200 rounded-lg p-6">
-                <h4 class="font-semibold text-purple-900 mb-3">
-                  <i class="fas fa-hammer mr-2"></i>Constructor
-                </h4>
-                <p class="text-purple-800">
-                  <code>public Player(string name)</code> is called when a new
-                  <code>Player</code> object is created. It initializes the object's state with the provided name and default health of 100.
-                </p>
-              </div>
-
-              <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
-                <h4 class="font-semibold text-amber-900 mb-3">
-                  <i class="fas fa-cogs mr-2"></i>Methods
-                </h4>
-                <p class="text-amber-800 mb-4">
-                  Methods define the behaviors and operations the class can perform:
-                </p>
-                <ul class="space-y-2 text-amber-700">
-                  <li><strong>TakeDamage:</strong> Modifies Health with validation logic</li>
-                  <li><strong>DisplayInfo:</strong> Shows player information</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <!-- Simulated Interactivity -->
-          <div id="simulated-interactivity" class="concept-card mb-12">
-            <h3 class="serif text-2xl font-semibold mb-6">Simulated Interactivity: Exploring Properties and Methods</h3>
-            <p class="text-lg leading-relaxed mb-6">
-              This section simulates interactivity by describing scenarios and providing C# code snippets that you can run in your local environment (like Visual Studio 2022 Community). The goal is to illustrate how properties and methods work, especially in the context of
-              <code>get; private set;</code>.
-            </p>
-
-            <!-- Scenario 1 -->
-            <div class="interactive-demo mb-8">
-              <div class="step-indicator mb-4">
-                <i class="fas fa-play mr-2"></i>Scenario 1
-              </div>
-              <h4 class="serif text-xl font-semibold mb-4">Creating a Player and Accessing Properties</h4>
-              <p class="text-gray-700 mb-4">
-                Create a new player and print their details to demonstrate
-                <code>public get</code> access.
-              </p>
-
-              <div class="flex flex-col lg:flex-row gap-6 mb-4">
-                <div class="flex-1">
-                  <h5 class="font-semibold mb-2">Action:</h5>
-                  <button class="demo-button" onclick="runScenario(1)">
-                    <i class="fas fa-code mr-2"></i>Create Player and Display Info
-                  </button>
-                </div>
-                <div class="flex-1">
-                  <h5 class="font-semibold mb-2">Code:</h5>
-                  <div class="code-block text-sm">
-                    <pre><code>Player player1 = new Player("Kimi");
-player1.DisplayInfo();</code></pre>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <h5 class="font-semibold mb-2">Expected Output:</h5>
-                <div class="demo-output" id="output-1">
-                  <em>Click the button to see the output...</em>
-                </div>
-              </div>
-            </div>
-
-            <!-- Scenario 2 -->
-            <div class="interactive-demo mb-8">
-              <div class="step-indicator mb-4">
-                <i class="fas fa-exclamation-triangle mr-2"></i>Scenario 2
-              </div>
-              <h4 class="serif text-xl font-semibold mb-4">Attempting to Modify Name Directly</h4>
-              <p class="text-gray-700 mb-4">
-                Try to change the player's name directly to see the
-                <code>private set</code> protection in action.
-              </p>
-
-              <div class="flex flex-col lg:flex-row gap-6 mb-4">
-                <div class="flex-1">
-                  <h5 class="font-semibold mb-2">Action:</h5>
-                  <button class="demo-button" onclick="runScenario(2)">
-                    <i class="fas fa-ban mr-2"></i>Try to Set Name Directly
-                  </button>
-                </div>
-                <div class="flex-1">
-                  <h5 class="font-semibold mb-2">Code:</h5>
-                  <div class="code-block text-sm">
-                    <pre><code>Player player1 = new Player("Kimi");
-// player1.Name = "NewName"; // Uncomment to see error
-player1.DisplayInfo();</code></pre>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <h5 class="font-semibold mb-2">Expected Outcome:</h5>
-                <div class="demo-output" id="output-2">
-                  <em>Click the button to see the error...</em>
-                </div>
-              </div>
-            </div>
-
-            <!-- Scenario 3 -->
-            <div class="interactive-demo">
-              <div class="step-indicator mb-4">
-                <i class="fas fa-heart-broken mr-2"></i>Scenario 3
-              </div>
-              <h4 class="serif text-xl font-semibold mb-4">Modifying Health via Class Method</h4>
-              <p class="text-gray-700 mb-4">
-                Use the
-                <code>TakeDamage</code> method to properly modify the
-                <code>Health</code> property.
-              </p>
-
-              <div class="flex flex-col lg:flex-row gap-6 mb-4">
-                <div class="flex-1">
-                  <h5 class="font-semibold mb-2">Action:</h5>
-                  <button class="demo-button" onclick="runScenario(3)">
-                    <i class="fas fa-sword mr-2"></i>Player Takes Damage
-                  </button>
-                </div>
-                <div class="flex-1">
-                  <h5 class="font-semibold mb-2">Code:</h5>
-                  <div class="code-block text-sm">
-                    <pre><code>Player player1 = new Player("Kimi");
-Console.WriteLine($"Initial Health: {player1.Health}");
-player1.TakeDamage(20); // Calling a method to change Health
-player1.DisplayInfo();</code></pre>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <h5 class="font-semibold mb-2">Expected Output:</h5>
-                <div class="demo-output" id="output-3">
-                  <em>Click the button to see the output...</em>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Running the Code Yourself -->
-          <div id="running-code" class="concept-card">
-            <h3 class="serif text-2xl font-semibold mb-6">Running the Code Yourself</h3>
-            <p class="text-lg leading-relaxed mb-6">
-              To truly benefit from this interactive playbook, it's highly recommended that you run the provided C# code snippets in your own development environment. You mentioned having Visual Studio 2022 Community installed, which is an excellent IDE for C# development.
-            </p>
-
-            <div class="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-6 mb-6">
-              <h4 class="font-semibold text-blue-900 mb-4">
-                <i class="fas fa-rocket mr-2"></i>Quick Setup Guide
-              </h4>
-              <ol class="space-y-3 text-blue-800">
-                <li class="flex items-start">
-                  <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5">1</span>
-                  <span>Open Visual Studio 2022 and create a new "Console App (.NET Core)" project</span>
-                </li>
-                <li class="flex items-start">
-                  <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5">2</span>
-                  <span>Copy the
-                    <code>Player</code> class code into your
-                    <code>Program.cs</code>
-                  </span>
-                </li>
-                <li class="flex items-start">
-                  <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5">3</span>
-                  <span>Add the scenario code snippets to the
-                    <code>Main</code> method
-                  </span>
-                </li>
-                <li class="flex items-start">
-                  <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5">4</span>
-                  <span>Press F5 or click the green "Start" button to run your program</span>
-                </li>
-              </ol>
-            </div>
-
-            <p class="text-lg leading-relaxed">
-              By running the code yourself, you'll gain a much deeper understanding of how classes, properties (especially
-              <code>get; private set;</code>), and methods work together. This hands-on practice is invaluable for internalizing these fundamental C# concepts.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Appendix Section -->
-      <section id="appendix" class="py-16 px-8 bg-gray-50">
-        <div class="container mx-auto max-w-4xl">
-          <h2 class="serif text-4xl font-bold mb-12 text-center">Appendix: Further Learning and Resources</h2>
-
-          <div class="concept-card mb-12">
-            <h3 class="serif text-2xl font-semibold mb-6">Setting Up Your Local C# Environment</h3>
-            <p class="text-lg leading-relaxed mb-6">
-              You mentioned having Visual Studio 2022 Community installed, which is a great starting point for C# development. Visual Studio is a powerful Integrated Development Environment (IDE) that provides all the tools you need to write, debug, and run C# applications.
-            </p>
-
-            <div class="grid md:grid-cols-2 gap-6 mb-6">
-              <div class="bg-white border border-gray-200 rounded-lg p-6">
-                <h4 class="font-semibold text-lg mb-3 text-green-700">
-                  <i class="fas fa-terminal mr-2"></i>Visual Studio Console Apps
-                </h4>
-                <p class="text-gray-700 mb-4">
-                  Create "Console App" projects for structured programs and complete applications.
-                </p>
-                <ul class="space-y-2 text-sm text-gray-600">
-                  <li class="flex items-center">
-                    <i class="fas fa-check text-green-500 mr-2"></i>
-                    Full debugging support
-                  </li>
-                  <li class="flex items-center">
-                    <i class="fas fa-check text-green-500 mr-2"></i>
-                    Complete project structure
-                  </li>
-                  <li class="flex items-center">
-                    <i class="fas fa-check text-green-500 mr-2"></i>
-                    NuGet package management
-                  </li>
-                </ul>
-              </div>
-
-              <div class="bg-white border border-gray-200 rounded-lg p-6">
-                <h4 class="font-semibold text-lg mb-3 text-blue-700">
-                  <i class="fas fa-book mr-2"></i>.NET Interactive Notebooks
-                </h4>
-                <p class="text-gray-700 mb-4">
-                  Use VS Code with Polyglot Notebooks extension for interactive coding.
-                </p>
-                <ul class="space-y-2 text-sm text-gray-600">
-                  <li class="flex items-center">
-                    <i class="fas fa-check text-blue-500 mr-2"></i>
-                    Interactive code cells
-                  </li>
-                  <li class="flex items-center">
-                    <i class="fas fa-check text-blue-500 mr-2"></i>
-                    Mix code and documentation
-                  </li>
-                  <li class="flex items-center">
-                    <i class="fas fa-check text-blue-500 mr-2"></i>
-                    Instant code execution
-                  </li>
+              <div class="bg-white border border-gray-200 rounded-lg p-4">
+                <h4 class="font-semibold text-gray-800 mb-2">Digital Payment Systems</h4>
+                <ul class="text-gray-600 space-y-1">
+                  <li>• PayPal</li>
+                  <li>• Skrill</li>
+                  <li>• WebMoney</li>
                 </ul>
               </div>
             </div>
 
-            <p class="text-lg leading-relaxed">
-              For your current learning stage, focusing on creating small Console App projects in Visual Studio 2022 is probably the most straightforward approach. Check out the <a href="https://github.com/dotnet/csharp-notebooks" class="citation">dotnet/csharp-notebooks GitHub repository</a> for interactive examples.
+            <p class="mb-6">The influence of these payment processors is significant because if they decide to cease processing payments for Steam due to content-related issues, it would <strong>severely impact Steam&#39;s ability to conduct business</strong>
+              <a href="https://itmatterss.in/gaming/steam-bans-games-over-payment-processor-rules/" class="citation">509</a>
+              <a href="https://www.engadget.com/gaming/steam-now-bans-games-that-violate-the-rules-and-standards-of-payment-processors-and-banks-164222173.html" class="citation">512</a>.
             </p>
           </div>
 
-          <div class="concept-card">
-            <h3 class="serif text-2xl font-semibold mb-6">Recommended Interactive C# Tutorials</h3>
-            <p class="text-lg leading-relaxed mb-6">
-              To supplement this guide and further your understanding of C#, several interactive tutorials and platforms can be very helpful:
+          <div id="card-networks" class="mb-12">
+            <h3 class="serif text-2xl font-semibold text-gray-800 mb-6">2.2 &#34;Related Card Networks and Banks&#34;</h3>
+
+            <p class="mb-6">The term <strong>&#34;related card networks and banks&#34;</strong> in Steam&#39;s updated policy refers to the broader financial ecosystem that supports electronic payments <a href="https://www.gosugamers.net/entertainment/news/76174-valve-updates-steam-policy-with-vague-adult-content-restrictions" class="citation">248</a>
+              <a href="https://automaton-media.com/en/news/steam-rules-updated-to-prohibit-content-that-violates-rules-set-forth-by-payment-processors-and-banks/" class="citation">250</a>.
             </p>
 
-            <div class="space-y-6">
-              <div class="bg-white border border-gray-200 rounded-lg p-6">
-                <h4 class="font-semibold text-lg mb-3 text-purple-700">
-                  <i class="fas fa-graduation-cap mr-2"></i>Microsoft Learn C# Tutorials
-                </h4>
-                <p class="text-gray-700 mb-4">
-                  Interactive browser-based tutorials covering C# fundamentals with built-in code execution. Perfect for beginners looking for guided, hands-on learning.
-                </p>
-                <a href="https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/tutorials/" class="citation" target="_blank">
-                  Explore Microsoft Learn C# Tutorials →
-                </a>
-              </div>
+            <p class="mb-6">This encompasses not just the primary payment processors, but also the <strong>major card networks such as Visa, MasterCard, American Express, Discover, and JCB</strong>, which provide the infrastructure for credit and debit card transactions.</p>
 
-              <div class="bg-white border border-gray-200 rounded-lg p-6">
-                <h4 class="font-semibold text-lg mb-3 text-orange-700">
-                  <i class="fas fa-jupyter mr-2"></i>Polyglot Notebooks
-                </h4>
-                <p class="text-gray-700 mb-4">
-                  Jupyter-style notebooks for C# with the "C# 101" series covering objects, classes, methods, and more. Great for interactive experimentation.
-                </p>
-                <a href="https://github.com/dotnet/csharp-notebooks" class="citation" target="_blank">
-                  View C# Notebooks on GitHub →
-                </a>
-              </div>
+            <div class="pull-quote">
+              Their influence is substantial because they can refuse service or impose strict conditions on merchants dealing with content they deem high-risk or objectionable.
+            </div>
+          </div>
 
-              <div class="bg-white border border-gray-200 rounded-lg p-6">
-                <h4 class="font-semibold text-lg mb-3 text-teal-700">
-                  <i class="fas fa-code mr-2"></i>C# Interactive Window
-                </h4>
-                <p class="text-gray-700 mb-4">
-                  Built into Visual Studio (View > Other Windows > C# Interactive). A REPL environment for immediate code experimentation without creating full projects.
-                </p>
-                <span class="text-teal-600 font-medium">Available in your Visual Studio installation</span>
+          <div id="internet-providers" class="mb-12">
+            <h3 class="serif text-2xl font-semibold text-gray-800 mb-6">2.3 &#34;Internet Network Providers&#34;</h3>
+
+            <p class="mb-6">The inclusion of <strong>&#34;internet network providers&#34;</strong> in Steam&#39;s new content policy clause is less clearly defined compared to payment processors and financial institutions, but it likely refers to <strong>major Internet Service Providers (ISPs) and telecommunications companies</strong> that provide the essential connectivity and infrastructure for internet services <a href="https://www.gosugamers.net/entertainment/news/76174-valve-updates-steam-policy-with-vague-adult-content-restrictions" class="citation">248</a>
+              <a href="https://automaton-media.com/en/news/steam-rules-updated-to-prohibit-content-that-violates-rules-set-forth-by-payment-processors-and-banks/" class="citation">250</a>.
+            </p>
+          </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Section 3: Agreements -->
+        <section id="agreements" class="mb-16">
+          <h2 class="serif text-3xl font-bold text-gray-900 mb-8">3. The Elusive Specific Agreements</h2>
+
+          <div id="public-agreements" class="mb-12">
+            <h3 class="serif text-2xl font-semibold text-gray-800 mb-6">3.1 Lack of Publicly Available Direct Agreements</h3>
+
+            <p class="mb-6">A significant challenge in fully understanding the implications of Steam&#39;s new policy is the <strong>lack of publicly available, specific agreements or contracts between Valve and its payment processors that explicitly detail the &#34;rules and standards&#34; pertaining to &#34;certain kinds of adult only content&#34;</strong>
+              <a href="https://www.eurogamer.net/steam-introduces-vague-new-rules-banning-certain-kinds-of-adult-content-to-appease-credit-card-companies" class="citation">46</a>
+              <a href="https://www.eurogamer.net/steam-introduces-vague-new-rules-banning-certain-kinds-of-adult-content-to-appease-credit-card-companies" class="citation">77</a>.
+            </p>
+
+            <img src="https://kimi-web-img.moonshot.cn/img/trcglobalmobility.com/7bcaf3b366405f8446e6c71b9214a2bea5687f99.jpg" alt="Sealed confidential business contract documents" class="w-full h-48 object-cover rounded-lg mb-6 shadow-lg" size="medium" aspect="wide" style="photo" query="confidential contract documents" referrerpolicy="no-referrer" data-modified="1" data-score="11482.00"/>
+
+            <p class="mb-6">This opacity creates a considerable degree of uncertainty for game developers, who are now expected to comply with a set of rules that are not transparently available for review.</p>
+          </div>
+
+          <div id="visa-policies" class="mb-12">
+            <h3 class="serif text-2xl font-semibold text-gray-800 mb-6">3.2 Visa&#39;s Stance on Prohibited Adult Content</h3>
+
+            <p class="mb-6">Visa has publicly documented its stance on prohibited adult content. The <strong>&#34;Visa Payment Facilitator and Marketplace Risk Guide&#34;</strong> explicitly states that &#34;Visa prohibits the purchase or trade of certain photographs, video imagery, computer-generated images, cartoons, simulation or any other media or activities. This includes but is not limited to <strong>CSAM [Child Sexual Abuse Material], bestiality, rape (or any other non-consensual sexual conduct), or non-consensual mutilation of a person or body part&#34;</strong>
+              <a href="https://usa.visa.com/content/dam/VCOM/regional/na/us/partner-with-us/documents/visa-payment-facilitator-and-marketplace-risk-guide.pdf" class="citation">64</a>
+              <a href="https://usa.visa.com/content/dam/VCOM/regional/na/us/partner-with-us/documents/visa-payment-facilitator-and-marketplace-risk-guide.pdf" class="citation">695</a>.
+            </p>
+
+            <div class="pull-quote">
+              The emphasis on &#34;non-consensual sexual conduct&#34; is particularly relevant, as it suggests that depictions of non-consensual acts, even if simulated or fictional, could fall under Visa&#39;s prohibitions.
+            </div>
+          </div>
+
+          <div id="mastercard-rules" class="mb-12">
+            <h3 class="serif text-2xl font-semibold text-gray-800 mb-6">3.3 Mastercard&#39;s Stricter Rules for Adult Content Merchants</h3>
+
+            <p class="mb-6">Mastercard has implemented stringent rules and requirements for merchants operating in the adult content space. In April 2021, Mastercard issued updated standards titled &#34;AN 5196 Revised Standards for New Specialty Merchant Registration Requirements for Adult Content Merchants&#34; <a href="https://www.commercegate.com/mastercard-issued-an-updated-set-of-rules-and-requirements-for-merchants-operating-with-the-content-for-adults/" class="citation">67</a>
+              <a href="https://www.commercegate.com/mastercard-issued-an-updated-set-of-rules-and-requirements-for-merchants-operating-with-the-content-for-adults/" class="citation">188</a>.
+            </p>
+
+            <p class="mb-6">Key requirements include:</p>
+            <ul class="list-disc list-inside space-y-2 mb-6 text-gray-700">
+              <li>Merchants must enter into written agreement with each content provider</li>
+              <li>Content providers must verify identity and age of all persons depicted</li>
+              <li>Written consent must be obtained and kept on record</li>
+              <li>Content must be reviewed before publication</li>
+            </ul>
+          </div>
+
+          <div id="paypal-policy" class="mb-12">
+            <h3 class="serif text-2xl font-semibold text-gray-800 mb-6">3.4 PayPal&#39;s Acceptable Use Policy Restrictions</h3>
+
+            <p class="mb-6">PayPal maintains an <strong>&#34;Acceptable Use Policy&#34; (AUP)</strong> that places significant restrictions on transactions involving sexually oriented goods and services, particularly digital content <a href="https://www.paypal.com/us/legalhub/paypal/acceptableuse-full" class="citation">70</a>
+              <a href="https://www.paypal.com/us/cshelp/article/what-is-paypal%E2%80%99s-policy-on-transactions-that-involve-sexually-oriented-goods-and-services-help384" class="citation">71</a>.
+            </p>
+
+            <p class="mb-6">PayPal explicitly does <em>not</em> permit PayPal account holders to buy or sell <strong>&#34;sexually oriented digital goods or content delivered through a digital medium&#34;</strong>
+              <a href="https://www.paypal.com/us/cshelp/article/what-is-paypal%E2%80%99s-policy-on-transactions-that-involve-sexually-oriented-goods-and-services-help384" class="citation">71</a>
+              <a href="https://www.paypal.com/us/cshelp/article/what-is-paypal%E2%80%99s-policy-on-transactions-that-involve-sexually-oriented-goods-and-services-help384" class="citation">194</a>.
+            </p>
+          </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Section 4: Analysis -->
+        <section id="analysis" class="mb-16">
+          <h2 class="serif text-3xl font-bold text-gray-900 mb-8">4. Analysis of Reasons Behind the Policy Change</h2>
+
+          <div id="dominant-influence" class="mb-12">
+            <h3 class="serif text-2xl font-semibold text-gray-800 mb-6">4.1 Dominant Influence of Payment Processors</h3>
+
+            <p class="mb-6">The primary and most consistently cited reason for Steam&#39;s new adult content policy is the <strong>dominant influence of payment processors, who effectively hold &#34;veto power&#34;</strong> over the types of content that can be monetized on online platforms <a href="https://spilled.gg/steam-bans-games-break-payment-processor-rules-focus-adult-content/" class="citation">378</a>
+              <a href="https://arstechnica.com/gaming/2025/07/steam-cracks-down-on-some-sex-games-to-appease-payment-processors/" class="citation">439</a>.
+            </p>
+
+            <div class="bg-red-50 border-l-4 border-red-400 p-6 my-8">
+              <h4 class="font-semibold text-red-800 mb-2">Veto Power of Payment Processors</h4>
+              <p class="text-red-700">Adult content is often categorized as &#34;high-risk&#34; by financial institutions due to elevated chargeback rates and fraudulent transactions. Payment processors can refuse service to merchants they perceive as inadequately managing these risks.</p>
+            </div>
+
+            <p class="mb-6">Adult content, particularly certain extreme or controversial subgenres, is often categorized as <strong>&#34;high-risk&#34;</strong> by financial institutions <a href="https://knowledge.everc.com/blog/mitigating-the-risks-associated-with-offering-adult-content" class="citation">415</a>
+              <a href="https://spilled.gg/steam-bans-games-break-payment-processor-rules-focus-adult-content/" class="citation">448</a>.
+            </p>
+
+            <h4 class="serif text-xl font-semibold text-gray-800 mb-4">Historical Precedents</h4>
+            <p class="mb-6">The most prominent example is the <strong>Pornhub incident in 2020</strong>, where major payment processors like Visa and Mastercard suspended services to the platform following allegations that it hosted child sexual abuse material (CSAM) and non-consensual intimate images (NCII) <a href="https://news.ycombinator.com/item?id=28238778" class="citation">479</a>
+              <a href="https://itmatterss.in/gaming/steam-bans-games-over-payment-processor-rules/" class="citation">509</a>.
+            </p>
+          </div>
+
+          <div id="definitional-creep" class="mb-12">
+            <h3 class="serif text-2xl font-semibold text-gray-800 mb-6">4.2 The Role of &#34;Definitional Creep&#34; and Moral Ordering</h3>
+
+            <p class="mb-6">The recent policy changes by Steam can be significantly understood through the lens of <strong>&#34;definitional creep&#34; and the &#34;moral ordering&#34; of sexual content</strong> by payment processors <a href="https://journals.sagepub.com/doi/full/10.1177/13634607241305579" class="citation">417</a>.</p>
+
+            <img src="https://kimi-web-img.moonshot.cn/img/compliancechief360.com/f8d785ab259cb08e19592882d6000085d2458ae4.jpeg" alt="Corporate boardroom meeting discussing moral standards" class="w-full h-64 object-cover rounded-lg mb-6 shadow-lg" size="medium" aspect="wide" style="photo" query="corporate boardroom morality discussion" referrerpolicy="no-referrer" data-modified="1" data-score="11592.00"/>
+
+            <p class="mb-6">Payment processors, primarily Visa and Mastercard, have increasingly assumed the role of arbiters of acceptable online sexual expression, extending their influence far beyond mere financial transaction facilitation.</p>
+
+            <div class="pull-quote">
+              This &#34;definitional creep&#34; occurs as payment processors expand their definitions of &#34;harmful&#34; content based on corporate interests and reputational optics.
+            </div>
+
+            <div class="mermaid-container">
+              <div class="mermaid-controls">
+                <button class="mermaid-control-btn zoom-in" title="放大">
+                  <i class="fas fa-search-plus"></i>
+                </button>
+                <button class="mermaid-control-btn zoom-out" title="缩小">
+                  <i class="fas fa-search-minus"></i>
+                </button>
+                <button class="mermaid-control-btn reset-zoom" title="重置">
+                  <i class="fas fa-expand-arrows-alt"></i>
+                </button>
+                <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                  <i class="fas fa-expand"></i>
+                </button>
+              </div>
+              <div class="mermaid">
+                graph TD
+                A[&#34;Legitimate Concerns about Illegal Content&#34;] --&gt; B[&#34;Broader Anti-Pornography Sentiments&#34;]
+                B --&gt; C[&#34;Expanded Definitions of &#39;Harmful&#39; Content&#34;]
+                C --&gt; D[&#34;Over-Moderation of Legal Content&#34;]
+                D --&gt; E[&#34;Financial Censorship&#34;]
+                E --&gt; F[&#34;Chilling Effect on Creative Expression&#34;]
+
+                G[&#34;Payment Processor Risk Aversion&#34;] --&gt; H[&#34;Brand Protection Prioritization&#34;]
+                H --&gt; I[&#34;Alignment with Conservative Values&#34;]
+                I --&gt; C
+
+                J[&#34;External Pressure Groups&#34;] --&gt; K[&#34;Moral Campaigns&#34;]
+                K --&gt; L[&#34;Public Relations Pressure&#34;]
+                L --&gt; G
+
+                style A fill:#E8D5C4,stroke:#8B5A3C,stroke-width:3px
+                style E fill:#D4B5A0,stroke:#5D4037,stroke-width:3px
+                style F fill:#8B5A3C,stroke:#2D1810,stroke-width:3px
+                style G fill:#F5F1ED,stroke:#8B5A3C,stroke-width:3px
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      <!-- Footer -->
-      <footer class="bg-gray-900 text-white py-12 px-8">
-        <div class="container mx-auto max-w-4xl text-center">
-          <h3 class="serif text-2xl font-semibold mb-4">Continue Your C# Journey</h3>
-          <p class="text-gray-300 mb-6">
-            This interactive guide has introduced you to the fundamental concepts of C# properties, classes, and methods.
-            Remember that programming is best learned through practice and experimentation.
-          </p>
-          <div class="flex justify-center space-x-6 text-sm text-gray-400">
-            <span>Interactive C# Guide</span>
-            <span>•</span>
-            <span>Beginner Friendly</span>
-            <span>•</span>
-            <span>Hands-On Learning</span>
+          <div id="legal-developments" class="mb-12">
+            <h3 class="serif text-2xl font-semibold text-gray-800 mb-6">4.3 Impact of Legal and Regulatory Developments</h3>
+
+            <h4 class="serif text-xl font-semibold text-gray-800 mb-4">The UK Online Safety Act</h4>
+            <p class="mb-6">The <strong>UK Online Safety Act (OSA)</strong>, which received Royal Assent in October 2023, represents a significant piece of legislation with potential global implications for online content moderation <a href="https://kotaku.com/steam-valve-adult-content-sex-games-online-safety-act-1851786391" class="citation">43</a>
+              <a href="https://kotaku.com/steam-valve-adult-content-sex-games-online-safety-act-1851786391" class="citation">94</a>.
+            </p>
+
+            <p class="mb-6">The Act requires services to implement systems and processes to mitigate and manage the risk of harm, including through content moderation and age assurance measures.</p>
+
+            <h4 class="serif text-xl font-semibold text-gray-800 mb-4">Age Verification Mandates</h4>
+            <p class="mb-6">Globally, there is an increasing trend towards <strong>mandating age verification and content restriction for online adult content</strong>. In the European Union, the Audiovisual Media Services Directive (AVMSD) and Digital Services Act (DSA) impose obligations to protect minors from harmful content.</p>
           </div>
-        </div>
-      </footer>
+
+          <div id="external-pressure" class="mb-12">
+            <h3 class="serif text-2xl font-semibold text-gray-800 mb-6">4.4 Influence of External Pressure Groups</h3>
+
+            <p class="mb-6">While direct evidence linking specific recent campaigns to Steam&#39;s adult game policy changes is limited, the <strong>historical precedent of pressure groups influencing payment processors is well-established</strong>
+              <a href="https://journals.sagepub.com/doi/full/10.1177/13634607241305579" class="citation">417</a>.
+            </p>
+
+            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6 my-8">
+              <h4 class="font-semibold text-yellow-800 mb-2">Financial Censorship Concerns</h4>
+              <p class="text-yellow-700">Commentators have expressed fears that what begins as a crackdown on specific adult themes could expand to encompass broader content, including games with LGBTQ+ themes or those deemed &#34;too controversial.&#34;</p>
+            </div>
+
+            <p class="mb-6">The Sage Journals article mentions a <strong>&#34;Ban⁄Takedown Campaign&#34; orchestrated by &#34;Campaigns Against Adult Content,&#34;</strong> which specifically targeted payment processors to pressure them into cutting off services for adult platforms <a href="https://journals.sagepub.com/doi/full/10.1177/13634607241305579" class="citation">417</a>.</p>
+          </div>
+
+          <div id="distinction" class="mb-12">
+            <h3 class="serif text-2xl font-semibold text-gray-800 mb-6">4.5 Distinction Between Legal Compliance, Risk Management, and Moral Stances</h3>
+
+            <p class="mb-6">It is crucial to distinguish between legal obligations, corporate risk management, and the moral or ethical stances of influential third parties, primarily payment processors.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+              <div class="bg-red-50 border border-red-200 rounded-lg p-6">
+                <h4 class="font-semibold text-red-800 mb-2">Primary Driver</h4>
+                <p class="text-red-700 text-sm">Financial and reputational risk for payment processors</p>
+              </div>
+              <div class="bg-orange-50 border border-orange-200 rounded-lg p-6">
+                <h4 class="font-semibold text-orange-800 mb-2">Secondary Driver</h4>
+                <p class="text-orange-700 text-sm">Compliance with evolving global regulations</p>
+              </div>
+              <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+                <h4 class="font-semibold text-yellow-800 mb-2">Tertiary Consideration</h4>
+                <p class="text-yellow-700 text-sm">Broader societal or political pressures</p>
+              </div>
+            </div>
+
+            <div class="pull-quote mt-8">
+              The policy reflects a pragmatic business decision by Valve to ensure the continued viability of its payment processing infrastructure, even if it means adopting content restrictions that go beyond strict legal mandates.
+            </div>
+          </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section class="mb-16">
+          <h2 class="serif text-3xl font-bold text-gray-900 mb-8">Conclusion</h2>
+
+          <p class="text-lg mb-6">Steam&#39;s new adult content policy represents a significant shift in how digital platforms approach content moderation, driven primarily by the <strong>dominant influence of payment processors</strong> rather than direct legal requirements or overt pressure from specific ideological groups.</p>
+
+          <p class="mb-6">The policy change reflects a pragmatic business decision by Valve to align with the risk tolerance and content standards of its financial partners, ensuring continued access to essential payment processing services. This move, while controversial, demonstrates the increasing power of financial institutions as <strong>de facto content gatekeepers</strong> in the digital economy.</p>
+
+          <img src="https://kimi-web-img.moonshot.cn/img/cdn.dribbble.com/0edd534a27fd37f7b42b0a6bf942ccd4c83f4e8f.png" alt="Digital platform under financial institution control" class="w-full h-64 object-cover rounded-lg mb-6 shadow-lg" size="medium" aspect="wide" query="digital platform controlled by financial institutions" referrerpolicy="no-referrer" data-modified="1" data-score="11477.00"/>
+
+          <p class="mb-6">The implications extend beyond adult content, highlighting broader concerns about <strong>financial censorship</strong> and the potential for corporate interests to shape the boundaries of acceptable online expression. As regulatory pressures increase and payment processors continue to prioritize risk mitigation, platforms like Steam face difficult choices between content diversity and business viability.</p>
+
+          <p class="text-lg font-medium text-gray-800">Ultimately, Steam&#39;s policy change underscores the complex interplay between financial infrastructure, regulatory environments, and content moderation in the digital age.</p>
+        </section>
+      </div>
     </main>
 
     <script>
-        // Initialize Vanta.js background
-        VANTA.NET({
-            el: "#vanta-bg",
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: 200.00,
-            minWidth: 200.00,
-            scale: 1.00,
-            scaleMobile: 1.00,
-            color: 0x3b82f6,
-            backgroundColor: 0x1e293b,
-            points: 8.00,
-            maxDistance: 25.00,
-            spacing: 18.00
+        // Initialize Mermaid
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#F5F1ED',
+                primaryTextColor: '#2D1810',
+                primaryBorderColor: '#8B5A3C',
+                lineColor: '#5D4037',
+                secondaryColor: '#E8D5C4',
+                tertiaryColor: '#D4B5A0',
+                background: '#FEFCFA',
+                mainBkg: '#F5F1ED',
+                secondBkg: '#E8D5C4',
+                tertiaryBkg: '#D4B5A0',
+                fontFamily: 'Inter, sans-serif',
+                fontSize: '14px'
+            },
+            flowchart: {
+                useMaxWidth: false,
+                htmlLabels: true
+            }
         });
 
-        // Table of Contents functionality
-        const tocLinks = document.querySelectorAll('.toc-link');
-        const sections = document.querySelectorAll('section[id], div[id]');
+        // Initialize Mermaid Controls for zoom and pan
+        function initializeMermaidControls() {
+            const containers = document.querySelectorAll('.mermaid-container');
 
-        // Smooth scrolling for TOC links
-        tocLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
+            containers.forEach(container => {
+            const mermaidElement = container.querySelector('.mermaid');
+            let scale = 1;
+            let isDragging = false;
+            let startX, startY, translateX = 0, translateY = 0;
+
+            // 触摸相关状态
+            let isTouch = false;
+            let touchStartTime = 0;
+            let initialDistance = 0;
+            let initialScale = 1;
+            let isPinching = false;
+
+            // Zoom controls
+            const zoomInBtn = container.querySelector('.zoom-in');
+            const zoomOutBtn = container.querySelector('.zoom-out');
+            const resetBtn = container.querySelector('.reset-zoom');
+            const fullscreenBtn = container.querySelector('.fullscreen');
+
+            function updateTransform() {
+                mermaidElement.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+
+                if (scale > 1) {
+                container.classList.add('zoomed');
+                } else {
+                container.classList.remove('zoomed');
+                }
+
+                mermaidElement.style.cursor = isDragging ? 'grabbing' : 'grab';
+            }
+
+            if (zoomInBtn) {
+                zoomInBtn.addEventListener('click', () => {
+                scale = Math.min(scale * 1.25, 4);
+                updateTransform();
+                });
+            }
+
+            if (zoomOutBtn) {
+                zoomOutBtn.addEventListener('click', () => {
+                scale = Math.max(scale / 1.25, 0.3);
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+                updateTransform();
+                });
+            }
+
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                scale = 1;
+                translateX = 0;
+                translateY = 0;
+                updateTransform();
+                });
+            }
+
+            if (fullscreenBtn) {
+                fullscreenBtn.addEventListener('click', () => {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
+                }
+                });
+            }
+
+            // Mouse Events
+            mermaidElement.addEventListener('mousedown', (e) => {
+                if (isTouch) return; // 如果是触摸设备，忽略鼠标事件
+
+                isDragging = true;
+                startX = e.clientX - translateX;
+                startY = e.clientY - translateY;
+                mermaidElement.style.cursor = 'grabbing';
+                updateTransform();
                 e.preventDefault();
-                const targetId = link.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({ 
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-                
-                // Close mobile menu if open
-                if (window.innerWidth <= 1024) {
-                    document.getElementById('toc').classList.remove('mobile-open');
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging && !isTouch) {
+                translateX = e.clientX - startX;
+                translateY = e.clientY - startY;
+                updateTransform();
                 }
             });
-        });
 
-        // Highlight current section in TOC
-        function updateCurrentSection() {
+            document.addEventListener('mouseup', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseleave', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            // 获取两点之间的距离
+            function getTouchDistance(touch1, touch2) {
+                return Math.hypot(
+                touch2.clientX - touch1.clientX,
+                touch2.clientY - touch1.clientY
+                );
+            }
+
+            // Touch Events - 触摸事件处理
+            mermaidElement.addEventListener('touchstart', (e) => {
+                isTouch = true;
+                touchStartTime = Date.now();
+
+                if (e.touches.length === 1) {
+                // 单指拖动
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+
+                } else if (e.touches.length === 2) {
+                // 双指缩放
+                isPinching = true;
+                isDragging = false;
+
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                initialDistance = getTouchDistance(touch1, touch2);
+                initialScale = scale;
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchmove', (e) => {
+                if (e.touches.length === 1 && isDragging && !isPinching) {
+                // 单指拖动
+                const touch = e.touches[0];
+                translateX = touch.clientX - startX;
+                translateY = touch.clientY - startY;
+                updateTransform();
+
+                } else if (e.touches.length === 2 && isPinching) {
+                // 双指缩放
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                const currentDistance = getTouchDistance(touch1, touch2);
+
+                if (initialDistance > 0) {
+                    const newScale = Math.min(Math.max(
+                    initialScale * (currentDistance / initialDistance),
+                    0.3
+                    ), 4);
+                    scale = newScale;
+                    updateTransform();
+                }
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchend', (e) => {
+                // 重置状态
+                if (e.touches.length === 0) {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                // 延迟重置isTouch，避免鼠标事件立即触发
+                setTimeout(() => {
+                    isTouch = false;
+                }, 100);
+                } else if (e.touches.length === 1 && isPinching) {
+                // 从双指变为单指，切换为拖动模式
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+                }
+
+                updateTransform();
+            });
+
+            mermaidElement.addEventListener('touchcancel', (e) => {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                setTimeout(() => {
+                isTouch = false;
+                }, 100);
+
+                updateTransform();
+            });
+
+            // Enhanced wheel zoom with better center point handling
+            container.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const rect = container.getBoundingClientRect();
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                const newScale = Math.min(Math.max(scale * delta, 0.3), 4);
+
+                // Adjust translation to zoom towards center
+                if (newScale !== scale) {
+                const scaleDiff = newScale / scale;
+                translateX = translateX * scaleDiff;
+                translateY = translateY * scaleDiff;
+                scale = newScale;
+
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+
+                updateTransform();
+                }
+            });
+
+            // Initialize display
+            updateTransform();
+            });
+        }
+
+        // Initialize controls after mermaid renders
+        setTimeout(() => {
+            initializeMermaidControls();
+        }, 1000);
+
+        // Scroll progress indicator
+        function updateScrollProgress() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('scrollProgress').style.width = scrollPercent + '%';
+        }
+
+        // Active TOC link highlighting
+        function updateActiveTOCLink() {
+            const sections = document.querySelectorAll('section[id], div[id]');
+            const tocLinks = document.querySelectorAll('.toc-link');
+            
             let currentSection = '';
-            const scrollPosition = window.scrollY + 100;
-
             sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.offsetHeight;
-                
-                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                    currentSection = section.getAttribute('id');
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= 100 && rect.bottom >= 100) {
+                    currentSection = section.id;
                 }
             });
-
+            
             tocLinks.forEach(link => {
                 link.classList.remove('active');
-                if (link.getAttribute('href') === `#${currentSection}`) {
+                if (link.getAttribute('href') === '#' + currentSection) {
                     link.classList.add('active');
                 }
             });
         }
 
-        // Update current section on scroll
-        window.addEventListener('scroll', updateCurrentSection);
-        updateCurrentSection(); // Initial call
-
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-toggle').addEventListener('click', function() {
+        // Mobile TOC toggle
+        function toggleTOC() {
             const toc = document.getElementById('toc');
-            toc.classList.toggle('mobile-open');
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const toc = document.getElementById('toc');
-            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-            
-            // Check if we are in mobile view and the menu is open
-            if (window.innerWidth <= 1024 && toc.classList.contains('mobile-open')) {
-                // If the click is outside the TOC and outside the hamburger button
-                if (!toc.contains(event.target) && event.target !== mobileMenuToggle) {
-                    toc.classList.remove('mobile-open');
-                }
-            }
-        });
-
-        // Interactive scenarios
-        function runScenario(scenarioNumber) {
-            const outputElement = document.getElementById(`output-${scenarioNumber}`);
-            
-            switch(scenarioNumber) {
-                case 1:
-                    outputElement.innerHTML = `Name: Kimi\nHealth: 100`;
-                    outputElement.classList.add('text-green-600');
-                    break;
-                case 2:
-                    outputElement.innerHTML = `Error CS0272: The property or indexer 'Player.Name' cannot be used in this context because the set accessor is inaccessible`;
-                    outputElement.classList.add('text-red-600');
-                    break;
-                case 3:
-                    outputElement.innerHTML = `Initial Health: 100\nName: Kimi\nHealth: 80`;
-                    outputElement.classList.add('text-blue-600');
-                    break;
-            }
-            
-            outputElement.innerHTML = '<i class="fas fa-check-circle mr-2"></i>' + outputElement.innerHTML;
+            toc.classList.toggle('open');
         }
 
-        // Add fade-in animation for elements
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+        // Smooth scrolling for TOC links
+        document.querySelectorAll('.toc-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    const offsetTop = targetElement.offsetTop - 100;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+                
+                // Close mobile TOC
+                if (window.innerWidth <= 1024) {
+                    document.getElementById('toc').classList.remove('open');
                 }
             });
-        }, observerOptions);
+        });
 
-        // Observe concept cards
-        document.querySelectorAll('.concept-card, .interactive-demo').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
+        // Event listeners
+        window.addEventListener('scroll', () => {
+            updateScrollProgress();
+            updateActiveTOCLink();
+        });
+
+        // Close mobile TOC when clicking outside
+        document.addEventListener('click', function(event) {
+            const toc = document.getElementById('toc');
+            const toggleButton = document.querySelector('button[onclick="toggleTOC()"]');
+            
+            // Check if the click is outside the TOC and not on the toggle button
+            if (toc.classList.contains('open') && 
+                !toc.contains(event.target) && 
+                event.target !== toggleButton && 
+                !toggleButton.contains(event.target)) {
+                toc.classList.remove('open');
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            updateScrollProgress();
+            updateActiveTOCLink();
         });
     </script>
-  </body>
+  
 
-</html>
+</body></html>
